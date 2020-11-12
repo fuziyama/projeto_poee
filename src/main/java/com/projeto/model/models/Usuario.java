@@ -10,16 +10,29 @@ import javax.persistence.Table;
 @Entity
 @Table(name="TAB_USUARIO")
 public class Usuario {
-	private Integer id;
-	private String username;
-	private String email;
-	private String password;
-	private boolean ativo = true;
-	private boolean admin = false;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "USUARIO_ID")
+	
+	@Column(name = "USARIO_ID")
+	private Integer id;
+	
+	@Column(name = "USARIO_USERNAME", length = 60, nullable = false)
+	private String 	username;
+	
+	@Column(name = "USUARIO_EMAIL", length = 100, nullable = false, unique = true)
+	private String 	email;
+	
+	@Column(name = "USARIO_PASSWORD", length = 100, nullable = false)
+	private String 	password;
+	
+	@Column(nullable = false)
+	private boolean ativo = true;
+	
+	@Column(nullable = false)
+	private boolean admin = false;
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -27,7 +40,6 @@ public class Usuario {
 		this.id = id;
 	}
 	
-	@Column(name = "USUARIO_USERNAME", length = 60, nullable = false)
 	public String getUsername() {
 		return username;
 	}
@@ -35,7 +47,6 @@ public class Usuario {
 		this.username = username;
 	}
 	
-	@Column(name = "USUARIO_EMAIL", length = 100, nullable = false, unique = true)
 	public String getEmail() {
 		return email;
 	}
@@ -43,15 +54,13 @@ public class Usuario {
 		this.email = email;
 	}
 	
-	@Column(name = "USUARIO_PASSWORD", length = 100 , nullable = false)
-	public String getPassword () {
+	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
 	
-	@Column(nullable = false)
 	public boolean isAtivo() {
 		return ativo;
 	}
@@ -59,7 +68,6 @@ public class Usuario {
 		this.ativo = ativo;
 	}
 	
-	@Column(nullable = false)
 	public boolean isAdmin() {
 		return admin;
 	}
@@ -74,7 +82,6 @@ public class Usuario {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -97,5 +104,6 @@ public class Usuario {
 		return "Usuario [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password
 				+ ", ativo=" + ativo + ", admin=" + admin + "]";
 	}
+	
 	
 }
