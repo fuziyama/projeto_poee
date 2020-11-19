@@ -12,24 +12,23 @@ public abstract class ConexaoBancoService {
 	@PersistenceContext(unitName = VariaveisProjeto.PERSISTENCE_UNIT_NAME)
 	private final EntityManager entityManager;
 	
-	
 	public ConexaoBancoService() {
 		this.entityManager = ConexaoBancoDados.getConexaoBancoDados().getEntityManager();
 	}
 	
+	
 	public EntityTransaction getTransaction() {
 		return this.getEntityManager().getTransaction();
+	}
+	
+	
+	public void close() {
+		if (this.getEntityManager().isOpen()) {
+			this.getEntityManager().close();
+		}
 	}
 
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
-	
-	public void close() {
-		if(this.getEntityManager().isOpen()) {
-			this.getEntityManager().close();
-		}
-		
-	}
-
 }

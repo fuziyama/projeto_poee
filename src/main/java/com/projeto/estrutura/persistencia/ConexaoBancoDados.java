@@ -10,25 +10,28 @@ import javax.persistence.Persistence;
 import com.projeto.estrutura.util.VariaveisProjeto;
 
 public class ConexaoBancoDados {
-
+	
+	
 	private static ConexaoBancoDados CONEXAO_BANCO_DADOS;
 	private static EntityManagerFactory FABRICA_CONEXAO;
 	
 	private ConexaoBancoDados() {
 		
-		if(FABRICA_CONEXAO == null) {
+		if (FABRICA_CONEXAO == null ) {
 			FABRICA_CONEXAO = getCriarFabricaConexao();
 		}
 	}
 	
+	
 	public static ConexaoBancoDados getConexaoBancoDados() {
 		
-		if(CONEXAO_BANCO_DADOS == null) {
+		if ( CONEXAO_BANCO_DADOS == null ) {
 			CONEXAO_BANCO_DADOS = new ConexaoBancoDados();
 		}
-		
+
 		return CONEXAO_BANCO_DADOS;
 	}
+	
 	
 	public EntityManager getEntityManager() {
 		return FABRICA_CONEXAO.createEntityManager();
@@ -36,13 +39,13 @@ public class ConexaoBancoDados {
 	
 	
 	private EntityManagerFactory getCriarFabricaConexao() {
-		
+
 		Map<String, String> properties = new HashMap<String, String>();
 		
-		properties.put("javax.persistence.schema-generation.database.action", "update");
-		properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-		properties.put("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
-		properties.put("hibernate.connection.url", "jdbc:mysql://localhost:3306/projeto?createDatabaseIfNotExist=true&useSSL=false");
+		properties.put("javax.persistence.schema-generation.database.action","update");
+		properties.put("hibernate.dialect","org.hibernate.dialect.MySQL5Dialect");
+		properties.put("hibernate.connection.driver_class","com.mysql.jdbc.Driver");
+		properties.put("hibernate.connection.url", "jdbc:mysql://localhost:3306/projeto_pooe?createDatabaseIfNotExist=true&useSSL=false");
 		properties.put("hibernate.connection.username", "root");
 		//properties.put("hibernate.connection.password", "root");
 		properties.put("hibernate.c3p0.min_size", "10");
@@ -59,4 +62,24 @@ public class ConexaoBancoDados {
 		
 		return Persistence.createEntityManagerFactory(VariaveisProjeto.PERSISTENCE_UNIT_NAME, properties);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 }
